@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Boilerry</string>
+
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="thermostat_temperature">17.0</string>
+    <string name="thermostat_temperature_units">C</string>
+    <string name="switch_master_on_off_label">State</string>
+    <string name="current_temperature">0.0</string>
+    <string name="current_temperature_units">C</string>
+    <string name="thermo_temp_popup_window">21</string>
+    <string name="heating_state">Current state of the heating.</string>
+
+    <color name="light_grey">#c3c4c3</color>
+</resources>

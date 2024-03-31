@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="MainViewModel"
+            type="com.vayak.boilerry.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_grey">
+
+        <RadioGroup
+            android:id="@+id/radioThermoSwitch"
+            android:layout_width="110dp"
+            android:layout_height="654dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="79dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/thermoState"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <RadioButton
+                android:id="@+id/radioThermoSwitchOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:button="@drawable/radio_button_icon"
+                android:text="Off"
+                tools:layout_editor_absoluteX="75dp"
+                tools:layout_editor_absoluteY="408dp" />
+
+            <RadioButton
+                android:id="@+id/radioThermoSwitchOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:button="@drawable/radio_button_icon"
+                android:text="Always On"
+                tools:layout_editor_absoluteX="75dp"
+                tools:layout_editor_absoluteY="408dp" />
+
+            <RadioButton
+                android:id="@+id/radioThermoSwitchTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="200dp"
+                android:button="@drawable/radio_button_icon"
+                android:text="Timer On"
+                tools:layout_editor_absoluteX="75dp"
+                tools:layout_editor_absoluteY="408dp" />
+
+            <RadioButton
+                android:id="@+id/radioThermoSwitchPredictive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/radio_button_icon"
+                android:text="Predictive"
+                tools:layout_editor_absoluteX="75dp"
+                tools:layout_editor_absoluteY="408dp" />
+
+        </RadioGroup>
+
+        <SeekBar
+            android:id="@+id/seekThermoTemperature"
+            android:layout_width="239dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="600dp"
+            android:max="25"
+            android:min="15"
+            android:progress="21"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:theme="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:thumb="@drawable/thermo_control"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thermoState"
+            app:layout_constraintVertical_bias="0.12" />
+
+        <TextView
+            android:id="@+id/temperatureRoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="28dp"
+            android:text="@string/current_temperature"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/thermoState"
+            android:layout_width="52dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="180dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/heating_off"
+            android:contentDescription="@string/heating_state" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/temperature_chart"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="436dp"
+            android:padding="9dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

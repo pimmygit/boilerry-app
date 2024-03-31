@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="thermostat_temperature" type="id" />
+    <item name="thermostat_temperature_units" type="id" />
+    <item name="master_on_off" type="id" />
+    <item name="current_temperature" type="id" />
+    <item name="current_temperature_units" type="id" />
+    <item name="temperature_chart" type="id" />
+</resources>
