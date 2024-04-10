@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var wsListener:            WebSocketListener
 
     private lateinit var binding:               ActivityMainBinding
-    private lateinit var viewModel:             MainViewModel
+    private lateinit var viewModel:             ThermostatViewModel
 
     private lateinit var mToast:                Toast;
 
@@ -51,6 +51,10 @@ class MainActivity : AppCompatActivity() {
         Log.d("onCreate", "Starting")
         super.onCreate(savedInstanceState)
 
+        // TODO: Do it properly
+        var graphData = ArrayList<TempMeasurement>()
+        var graphBuilt = false
+
         // Initialise here to speed up the pop-up refresh
         mToast = Toast.makeText(applicationContext, "", Toast.LENGTH_SHORT);
 
@@ -58,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Log.d("onCreate", "Created binding")
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this)[ThermostatViewModel::class.java]
 
         viewModel.thermostatLiveData.observe(this) {
             blockOnChangeListener = true
@@ -66,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
             // Current temperature
             binding.temperatureRoom.text = buildString {
-                append(it.temperature_room.toString())
+                append(it.temp_now.toString())
                 append(" C")
             }
 
@@ -75,11 +79,18 @@ class MainActivity : AppCompatActivity() {
             binding.seekThermoTemperature.isEnabled = it.thermo_switch == 1
 
             // Current state of the heating (heater on/off)
-            if (it.thermo_state) {
+            if (it.thermo_relay) {
                 binding.thermoState.setImageResource(R.drawable.heating_on)
             } else {
                 binding.thermoState.setImageResource(R.drawable.heating_off)
             }
+
+            if (!graphBuilt) {
+                // The graph data wont change really - there is need to re-build it every time.
+                graphBuilt = true
+                drawGraph(it.temp_history as ArrayList<TempMeasurement>)
+            }
+
             blockOnChangeListener = false
         }
         Log.d("onCreate", "Created ViewModel")
@@ -151,34 +162,18 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun drawGraph(tempHistoryData: ArrayList<TempMeasurement>) {
         //Part1
         val entries = ArrayList<Entry>()
 
+        Log.d("onCreate","Number of graph records: ${tempHistoryData.size})")
+
+        for (tempMeasurement in tempHistoryData) {
+            entries.add(Entry(tempMeasurement.datetime.toFloat(), tempMeasurement.temperature))
+        }
         //Part2
-        entries.add(Entry(1f, 16f))
-        entries.add(Entry(2f, 16.3f))
-        entries.add(Entry(3f, 16.7f))
-        entries.add(Entry(4f, 17f))
-        entries.add(Entry(5f, 17.4f))
-        entries.add(Entry(6f, 18f))
-        entries.add(Entry(7f, 19f))
-        entries.add(Entry(8f, 19f))
-        entries.add(Entry(9f, 19f))
-        entries.add(Entry(10f, 18f))
-        entries.add(Entry(11f, 17f))
-        entries.add(Entry(12f, 17f))
-        entries.add(Entry(13f, 17f))
-        entries.add(Entry(14f, 17.5f))
-        entries.add(Entry(15f, 17.8f))
-        entries.add(Entry(16f, 18.5f))
-        entries.add(Entry(17f, 19f))
-        entries.add(Entry(18f, 19.2f))
-        entries.add(Entry(19f, 19f))
-        entries.add(Entry(20f, 18.6f))
-        entries.add(Entry(21f, 18.4f))
-        entries.add(Entry(22f, 18.6f))
-        entries.add(Entry(23f, 18.5f))
-        entries.add(Entry(24f, 17.8f))
 
         //Part3
         val vl = LineDataSet(entries, "Temperature")

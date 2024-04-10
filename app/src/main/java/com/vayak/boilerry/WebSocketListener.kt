@@ -5,9 +5,10 @@ import com.vayak.boilerry.JsonRequestStore.Companion.getThermostatState
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
+import org.json.JSONObject
 
 class WebSocketListener(
-    private val viewModel: MainViewModel
+    private val viewModel: ThermostatViewModel
 ): WebSocketListener() {
 
     private val TAG = "WebSocketListener"
@@ -20,10 +21,11 @@ class WebSocketListener(
         Log.d(TAG, "onOpen: $thermoState")
     }
 
-    override fun onMessage(webSocket: WebSocket, text: String) {
-        super.onMessage(webSocket, text)
-        viewModel.setStateFromJson(Pair(false, text))
-        Log.d(TAG, "onMessage: $text")
+    override fun onMessage(webSocket: WebSocket, messageText: String) {
+        super.onMessage(webSocket, messageText)
+        Log.d(TAG, "onMessage: $messageText")
+
+        viewModel.setStateFromJson(Pair(false, messageText))
     }
 
     override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {

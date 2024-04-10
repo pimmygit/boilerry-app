@@ -5,28 +5,30 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vayak.boilerry.Constants.Companion.HTTPOBJ_THERMO_STATE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 
-class MainViewModel() : ViewModel() {
+class TempHistoryViewModel() : ViewModel() {
     private var _socketStatus = MutableLiveData(false)
-    val thermostatLiveData = MutableLiveData<Thermostat>()
+    val tempHistoryLiveData = MutableLiveData<TempHistory>()
 
-    private var _dataRepository = DataRepository(ThermostatImpl())
+    private var _tempHistoryRepository = TempHistoryRepository(TempHistoryImpl())
 
-    fun setStateFromJson(wsResponse: Pair<Boolean, String>) : LiveData<Thermostat> {
+    fun setStateFromJson(wsResponse: Pair<Boolean, String>) : LiveData<TempHistory> {
         viewModelScope.launch {
 
             if (_socketStatus.value == true) {
                 Log.d("MainViewModel", "JSON: ${wsResponse.second}")
-                val thermostatData: Thermostat = withContext(Dispatchers.IO) {
-                    _dataRepository.setThermostatFromJson(wsResponse.second)
+                val tempHistoryData: TempHistory = withContext(Dispatchers.IO) {
+                    _tempHistoryRepository.setTemperatureFromJson(wsResponse.second)
                 }
-                thermostatLiveData.value = thermostatData
+                tempHistoryLiveData.value = tempHistoryData
             }
         }
-        return thermostatLiveData
+        return tempHistoryLiveData
     }
 
     fun setStatus(status: Boolean) = viewModelScope.launch(Dispatchers.Main) {

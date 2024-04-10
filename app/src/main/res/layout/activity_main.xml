@@ -6,7 +6,7 @@
     <data>
         <variable
             name="MainViewModel"
-            type="com.vayak.boilerry.MainViewModel" />
+            type="com.vayak.boilerry.ThermostatViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,5 +1,5 @@
 package com.vayak.boilerry
 
 interface ThermostatAPI {
-    suspend fun setThermostatFromJson(JsonString: String) : Thermostat
+    suspend fun setThermostatFromJson(jsonString: String) : Thermostat
 }
