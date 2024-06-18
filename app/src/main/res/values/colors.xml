@@ -991,4 +991,20 @@
     <color name="transparent_white_percent_90">#E6ffffff</color>
     <color name="transparent_white_percent_95">#F2ffffff</color>
 
+    <color name="seekbar_red">#FFF44336</color>
+    <color name="seekbar_orange">#FFFFAB40</color>
+    <color name="seekbar_yellow">#FFFFEB3B</color>
+    <color name="seekbar_green">#FF4CAF50</color>
+    <color name="seekbar_blue">#FF2196F3</color>
+    <color name="seekbar_indigo">#FF3F51B5</color>
+    <color name="seekbar_purple">#FF9C27B0</color>
+
+    <array name="seekbar_rainbow">
+        <item>@color/seekbar_blue</item>
+        <item>@color/seekbar_green</item>
+        <item>@color/seekbar_yellow</item>
+        <item>@color/seekbar_orange</item>
+        <item>@color/seekbar_red</item>
+    </array>
+
 </resources>

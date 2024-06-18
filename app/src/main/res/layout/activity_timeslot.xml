@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityMain">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="25dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="526dp">
+
+        <TextView
+            android:id="@+id/fromTimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time From"
+            android:textSize="22sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="89dp"
+            tools:layout_editor_absoluteY="546dp" />
+
+        <NumberPicker
+            android:id="@+id/from_time_picker"
+            android:layout_width="124dp"
+            android:layout_height="248dp"
+            android:background="@color/light_yellow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.138"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.393"></NumberPicker>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="280dp"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="25dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="467dp"
+        tools:layout_editor_absoluteY="526dp">
+
+        <TextView
+            android:id="@+id/toTimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time To"
+            android:textSize="22sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="597dp"
+            tools:layout_editor_absoluteY="546dp" />
+
+
+        <NumberPicker
+            android:id="@+id/to_time_picker"
+            android:layout_width="124dp"
+            android:layout_height="248dp"
+            android:background="@color/light_yellow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.678"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.426"></NumberPicker>
+
+    </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="25dp"
+        android:orientation="horizontal">
+
+    <com.seosh817.circularseekbar.CircularSeekBar
+        android:id="@+id/circular_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:circularSeekBar_animation="normal"
+        app:circularSeekBar_animationDurationMillis="1000"
+        app:circularSeekBar_barWidth="8dp"
+        app:circularSeekBar_interactive="true"
+        app:circularSeekBar_innerThumbRadius="5dp"
+        app:circularSeekBar_innerThumbStrokeWidth="3dp"
+        app:circularSeekBar_min="10"
+        app:circularSeekBar_max="25"
+        app:circularSeekBar_outerThumbRadius="5dp"
+        app:circularSeekBar_outerThumbStrokeWidth="10dp"
+        app:circularSeekBar_startAngle="45"
+        app:circularSeekBar_sweepAngle="270"
+        app:circularSeekBar_progressGradientColors="@array/seekbar_rainbow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/circular_seek_bar"
+            app:layout_constraintEnd_toEndOf="@id/circular_seek_bar"
+            app:layout_constraintStart_toStartOf="@id/circular_seek_bar"
+            app:layout_constraintTop_toTopOf="@id/circular_seek_bar">
+
+            <TextView
+                android:id="@+id/tv_progress_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15"
+                app:layout_constraintBottom_toBottomOf="@id/circular_seek_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Degree"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_progress_value" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

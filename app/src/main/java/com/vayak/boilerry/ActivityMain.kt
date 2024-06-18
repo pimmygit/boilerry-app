@@ -23,9 +23,12 @@ import com.vayak.boilerry.databinding.ActivityMainBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity() {
+class ActivityMain : AppCompatActivity() {
 
     private var cHOST:                          String?             = "pimmy.ddns.net"
     //private var cHOST:                          String?             = "192.168.1.7"
@@ -52,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // TODO: Do it properly
-        var graphData = ArrayList<TempMeasurement>()
+        var graphData = ArrayList<TempHistory>()
         var graphBuilt = false
 
         // Initialise here to speed up the pop-up refresh
@@ -88,7 +91,7 @@ class MainActivity : AppCompatActivity() {
             if (!graphBuilt) {
                 // The graph data wont change really - there is need to re-build it every time.
                 graphBuilt = true
-                drawGraph(it.temp_history as ArrayList<TempMeasurement>)
+                drawGraph(it.temp_history as ArrayList<TempHistory>)
             }
 
             blockOnChangeListener = false
@@ -164,14 +167,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun drawGraph(tempHistoryData: ArrayList<TempMeasurement>) {
+    fun String.toTimeDateLong(): Long {
+        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.UK)
+        return format.parse(this)?.time ?: throw IllegalArgumentException("Invalid time string")
+    }
+
+    private fun drawGraph(tempHistoryData: ArrayList<TempHistory>) {
         //Part1
         val entries = ArrayList<Entry>()
 
         Log.d("onCreate","Number of graph records: ${tempHistoryData.size})")
 
         for (tempMeasurement in tempHistoryData) {
-            entries.add(Entry(tempMeasurement.datetime.toFloat(), tempMeasurement.temperature))
+            entries.add(Entry(tempMeasurement.datetime.toTimeDateLong().toFloat(), tempMeasurement.sensor_1!!))
         }
         //Part2
 

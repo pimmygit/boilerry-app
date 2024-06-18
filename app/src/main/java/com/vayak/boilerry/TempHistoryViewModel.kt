@@ -5,11 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vayak.boilerry.Constants.Companion.HTTPOBJ_THERMO_STATE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
 
 class TempHistoryViewModel() : ViewModel() {
     private var _socketStatus = MutableLiveData(false)
