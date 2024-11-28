@@ -7,7 +7,7 @@ class TempHistoryImpl : TempHistoryAPI {
 
     override suspend fun setTemperatureFromJson(jsonString: String): TempHistory {
         val tempHistoryObj = Gson().fromJson(jsonString, TempHistory::class.java)
-        Log.d("ThermostatImpl", "OBJ: $tempHistoryObj}")
+        Log.d("ThermostatImpl", "OBJ: $tempHistoryObj")
         return tempHistoryObj
     }
 }

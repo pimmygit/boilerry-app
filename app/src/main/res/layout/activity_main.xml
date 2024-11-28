@@ -12,11 +12,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_grey">
+        android:background="@color/cadet_grey">
 
         <RadioGroup
             android:id="@+id/radioThermoSwitch"
-            android:layout_width="110dp"
+            android:layout_width="112dp"
             android:layout_height="654dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="15dp"
@@ -53,7 +53,7 @@
                 android:id="@+id/radioThermoSwitchTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="200dp"
+                android:layout_marginBottom="220dp"
                 android:button="@drawable/radio_button_icon"
                 android:text="Timer On"
                 tools:layout_editor_absoluteX="75dp"
@@ -99,7 +99,8 @@
             android:text="@string/current_temperature"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableTopCompat="@color/black" />
 
         <ImageView
             android:id="@+id/thermoState"
@@ -107,21 +108,145 @@
             android:layout_height="53dp"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="180dp"
+            android:contentDescription="@string/heating_state"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/heating_off"
-            android:contentDescription="@string/heating_state" />
+            app:srcCompat="@drawable/heating_off" />
 
-        <com.github.mikephil.charting.charts.LineChart
+        <TextView
+            android:id="@+id/rowMon"
+            android:layout_width="380dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="196dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="4"
+            android:background="@color/slate_blue"
+            android:gravity="center_horizontal"
+            android:padding="5sp"
+            android:text="@string/Monday_short"
+            android:textColor="@color/purple"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/rowTue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/rowTue"
+            android:layout_width="380dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_weight="4"
+            android:background="@color/wild_blue_yonder"
+            android:gravity="center_horizontal"
+            android:padding="5sp"
+            android:text="@string/Tuesday_short"
+            android:textColor="@color/purple"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/rowWed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rowMon" />
+
+        <TextView
+            android:id="@+id/rowWed"
+            android:layout_width="380dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="4"
+            android:background="@color/slate_blue"
+            android:gravity="center_horizontal"
+            android:padding="5sp"
+            android:text="@string/Wednesday_short"
+            android:textColor="@color/purple"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/rowThu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rowTue" />
+
+        <TextView
+            android:id="@+id/rowThu"
+            android:layout_width="380dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_weight="4"
+            android:background="@color/wild_blue_yonder"
+            android:gravity="center_horizontal"
+            android:padding="5sp"
+            android:text="@string/Thursday_short"
+            android:textColor="@color/purple"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rowWed" />
+
+        <TextView
+            android:id="@+id/rowFri"
+            android:layout_width="380dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="4"
+            android:background="@color/slate_blue"
+            android:gravity="center_horizontal"
+            android:padding="5sp"
+            android:text="@string/Friday_short"
+            android:textColor="@color/purple"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/rowSat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rowThu" />
+
+        <TextView
+            android:id="@+id/rowSat"
+            android:layout_width="380dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="660dp"
+            android:layout_weight="4"
+            android:background="@color/wild_blue_yonder"
+            android:gravity="center_horizontal"
+            android:padding="5sp"
+            android:text="@string/Saturday_short"
+            android:textColor="@color/purple"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/rowSun"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rowFri" />
+
+        <TextView
+            android:id="@+id/rowSun"
+            android:layout_width="380dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="4"
+            android:background="@color/slate_blue"
+            android:gravity="center_horizontal"
+            android:padding="5sp"
+            android:text="@string/Sunday_short"
+            android:textColor="@color/purple"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rowSat"
+            app:drawableBottomCompat="@color/black" />
+
+        <com.github.mikephil.charting.charts.CombinedChart
             android:id="@+id/temperature_chart"
             android:layout_width="0dp"
             android:layout_height="200dp"
-            android:layout_marginTop="436dp"
+            android:layout_marginTop="468dp"
             android:padding="9dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

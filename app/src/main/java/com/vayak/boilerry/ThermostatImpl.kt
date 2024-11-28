@@ -45,7 +45,7 @@ class ThermostatImpl : ThermostatAPI {
         val gson = builder.create();
 
         val thermobj = gson.fromJson(jsonString, Thermostat::class.java)
-        Log.d("ThermostatImpl", "OBJ: $thermobj}")
+        Log.d("ThermostatImpl", "OBJ: $thermobj")
         return thermobj
     }
 }

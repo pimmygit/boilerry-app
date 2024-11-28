@@ -11,5 +11,20 @@
     <string name="thermo_temp_popup_window">21</string>
     <string name="heating_state">Current state of the heating.</string>
 
+    <string name="Monday_short">Mon</string>
+    <string name="Monday_full">Monday</string>
+    <string name="Tuesday_short">Tue</string>
+    <string name="Tuesday_full">Tuesday</string>
+    <string name="Wednesday_short">Wed</string>
+    <string name="Wednesday_full">Wednesday</string>
+    <string name="Thursday_short">Thu</string>
+    <string name="Thursday_full">Thursday</string>
+    <string name="Friday_short">Fri</string>
+    <string name="Friday_full">Friday</string>
+    <string name="Saturday_short">Sat</string>
+    <string name="Saturday_full">Saturday</string>
+    <string name="Sunday_short">Sun</string>
+    <string name="Sunday_full">Sunday</string>
+
     <color name="light_grey">#c3c4c3</color>
 </resources>
