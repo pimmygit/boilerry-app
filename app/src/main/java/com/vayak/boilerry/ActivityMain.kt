@@ -1,6 +1,7 @@
 package com.vayak.boilerry
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -160,6 +161,22 @@ class ActivityMain : AppCompatActivity() {
                 }
             }
         }
+
+        // Weekly schedule table
+        findViewById<TextView>(R.id.rowMon).setOnClickListener { startDayOfWeekIntent("Mon") }
+        findViewById<TextView>(R.id.rowTue).setOnClickListener { startDayOfWeekIntent("Tue") }
+        findViewById<TextView>(R.id.rowWed).setOnClickListener { startDayOfWeekIntent("Wed") }
+        findViewById<TextView>(R.id.rowThu).setOnClickListener { startDayOfWeekIntent("Thu") }
+        findViewById<TextView>(R.id.rowFri).setOnClickListener { startDayOfWeekIntent("Fri") }
+        findViewById<TextView>(R.id.rowSat).setOnClickListener { startDayOfWeekIntent("Sat") }
+        findViewById<TextView>(R.id.rowSun).setOnClickListener { startDayOfWeekIntent("Sun") }
+    }
+
+    private fun startDayOfWeekIntent(dayOfWeek:String) {
+        val intentRowMon = Intent(this, ActivityTimeSlot::class.java)
+        intentRowMon.putExtra("dayOfWeek", dayOfWeek)
+        startActivity(intentRowMon);
+        finish();
     }
 
     //Called when the activity is about to become visible
