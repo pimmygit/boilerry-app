@@ -1,6 +1,9 @@
 package com.vayak.boilerry
 
 data class DailySchedule(
+    val dayOfWeek: String,
+    val timeSlots: ArrayList<TemperatureTimeSlot>
+) {
     /*
     Object containing the temperatures for various time slots throughout a given day.
 
@@ -20,14 +23,61 @@ data class DailySchedule(
         by making the one with lower temperature to extend on the place of the deleted time slot.
         4. If the user tries to add a time slot that overlaps two existing slots, an error will be reported.
     */
-    val dayOfWeek: String,
-    val timeSlots: ArrayList<TemperatureTimeSlot>,
-    val unit_speed: String,
-    val unit_temperature: String,
-    val temperature: Float? = null,
-    val windchill: Float? = null,
-    val wspd: Float? = null,
-    val sensor_1: Float? = null,
-    val sensor_2: Float? = null,
-    val sensor_3: Float? = null
-)
+
+    fun addTimeSlot(
+        temperature: Double = 17.0,
+        timeStart: Int = 0,
+        timeEnd: Int = 1439
+    ): Int {
+        // Check if the time slot is overlapping more than one parent time slot
+        var indexOfOriginalTimeSlot = -1
+        var previousTimeSlot:TemperatureTimeSlot = TemperatureTimeSlot()
+        var newTimeSlot:TemperatureTimeSlot = TemperatureTimeSlot()
+        var followingTimeSlot:TemperatureTimeSlot = TemperatureTimeSlot()
+
+        for (timeSlot: TemperatureTimeSlot in timeSlots) {
+            // If the new time slot overlaps only with one existing time slot,
+            // we break the original time slot to insert the new one.
+            if ( (0 == timeStart || timeSlot.timeStart < timeStart) && (timeEnd < timeSlot.timeEnd || timeEnd == 1439 ) ) {
+                // Create the new time slots in replacement to the original one.
+                newTimeSlot = TemperatureTimeSlot(temperature=temperature, timeStart=timeStart, timeEnd=timeEnd)
+                if (timeStart > 0) {
+                    previousTimeSlot = TemperatureTimeSlot(temperature=timeSlot.temperature, timeStart=timeSlot.timeStart, timeEnd=timeStart-1)
+                }
+                if (timeEnd < 1439) {
+                    followingTimeSlot = TemperatureTimeSlot(temperature=timeSlot.temperature, timeStart=timeEnd+1, timeEnd=timeSlot.timeEnd)
+                }
+                indexOfOriginalTimeSlot = timeSlots.indexOf(timeSlot)
+                break
+            }
+        }
+
+        // Have we successfully found replacement to the old time slot with the new one?
+        if (newTimeSlot == TemperatureTimeSlot()) {
+            return 1
+        }
+        // Remove the original time slot and place the new ones
+        timeSlots.removeAt(indexOfOriginalTimeSlot)
+        timeSlots.add(newTimeSlot)
+        if (previousTimeSlot != TemperatureTimeSlot()) {
+            timeSlots.add(previousTimeSlot)
+        }
+        if (followingTimeSlot != TemperatureTimeSlot()) {
+            timeSlots.add(followingTimeSlot)
+        }
+        return 0
+    }
+
+    fun removeTimeSlot(temperature: Double, timeStart: Int, timeEnd: Int): Int {
+        val timeSlotToRemove = TemperatureTimeSlot(temperature, timeStart, timeEnd)
+        val indexOfTimeSlotToRemove = timeSlots.indexOf(timeSlotToRemove)
+
+        if (indexOfTimeSlotToRemove > -1) {
+            timeSlots.removeAt(indexOfTimeSlotToRemove)
+            return 0
+        }
+
+        return 1
+    }
+}
+
