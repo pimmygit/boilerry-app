@@ -1,5 +1,7 @@
 package com.vayak.boilerry
 
+import android.util.Log
+
 data class DailySchedule(
     val dayOfWeek: String,
     val timeSlots: ArrayList<TemperatureTimeSlot>
@@ -35,20 +37,29 @@ data class DailySchedule(
         var newTimeSlot:TemperatureTimeSlot = TemperatureTimeSlot()
         var followingTimeSlot:TemperatureTimeSlot = TemperatureTimeSlot()
 
+        Log.d("addTimeSlot", "Checking validity: temperature[$temperature], start[$timeStart], end[$timeEnd].")
+
         for (timeSlot: TemperatureTimeSlot in timeSlots) {
             // If the new time slot overlaps only with one existing time slot,
             // we break the original time slot to insert the new one.
             if ( (0 == timeStart || timeSlot.timeStart < timeStart) && (timeEnd < timeSlot.timeEnd || timeEnd == 1439 ) ) {
+                indexOfOriginalTimeSlot = timeSlots.indexOf(timeSlot)
+
+                Log.d("addTimeSlot", "Valid with index[$indexOfOriginalTimeSlot] and temperature[$temperature], start[$timeStart], end[$timeEnd].")
+
                 // Create the new time slots in replacement to the original one.
                 newTimeSlot = TemperatureTimeSlot(temperature=temperature, timeStart=timeStart, timeEnd=timeEnd)
                 if (timeStart > 0) {
                     previousTimeSlot = TemperatureTimeSlot(temperature=timeSlot.temperature, timeStart=timeSlot.timeStart, timeEnd=timeStart-1)
+                    Log.d("addTimeSlot", "Create previous with temperature[${previousTimeSlot.temperature}], start[${previousTimeSlot.timeStart}], end[${previousTimeSlot.timeEnd}].")
                 }
                 if (timeEnd < 1439) {
                     followingTimeSlot = TemperatureTimeSlot(temperature=timeSlot.temperature, timeStart=timeEnd+1, timeEnd=timeSlot.timeEnd)
+                    Log.d("addTimeSlot", "Create following with temperature[${followingTimeSlot.temperature}], start[${followingTimeSlot.timeStart}], end[${followingTimeSlot.timeEnd}].")
                 }
-                indexOfOriginalTimeSlot = timeSlots.indexOf(timeSlot)
                 break
+            } else {
+                Log.d("addTimeSlot", "Invalid with temperature[${timeSlot.temperature}], start[${timeSlot.timeStart}], end[${timeSlot.timeEnd}].")
             }
         }
 
@@ -57,7 +68,10 @@ data class DailySchedule(
             return 1
         }
         // Remove the original time slot and place the new ones
+        Log.d("addTimeSlot", "Removing time slot with index: $indexOfOriginalTimeSlot")
         timeSlots.removeAt(indexOfOriginalTimeSlot)
+
+        Log.d("addTimeSlot", "Adding new time slots..")
         timeSlots.add(newTimeSlot)
         if (previousTimeSlot != TemperatureTimeSlot()) {
             timeSlots.add(previousTimeSlot)
@@ -73,8 +87,11 @@ data class DailySchedule(
         val indexOfTimeSlotToRemove = timeSlots.indexOf(timeSlotToRemove)
 
         if (indexOfTimeSlotToRemove > -1) {
+            Log.d("removeTimeSlot", "Removing time slot with index: $indexOfTimeSlotToRemove")
             timeSlots.removeAt(indexOfTimeSlotToRemove)
             return 0
+        } else {
+            Log.d("removeTimeSlot", "Failed to identify time slot with index: $indexOfTimeSlotToRemove")
         }
 
         return 1
