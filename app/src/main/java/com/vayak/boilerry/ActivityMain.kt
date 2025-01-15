@@ -173,7 +173,7 @@ class ActivityMain : AppCompatActivity() {
     }
 
     private fun startDayOfWeekIntent(dayOfWeek:String) {
-        val intentRowMon = Intent(this, ActivityTimeSlot::class.java)
+        val intentRowMon = Intent(this, ActivityDailySchedule::class.java)
         intentRowMon.putExtra("dayOfWeek", dayOfWeek)
         startActivity(intentRowMon);
         finish();
