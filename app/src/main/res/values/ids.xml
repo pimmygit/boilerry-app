@@ -6,4 +6,6 @@
     <item name="current_temperature" type="id" />
     <item name="current_temperature_units" type="id" />
     <item name="temperature_chart" type="id" />
+    <item name="time_picker_from" type="id" />
+    <item name="time_picker_to" type="id" />
 </resources>
