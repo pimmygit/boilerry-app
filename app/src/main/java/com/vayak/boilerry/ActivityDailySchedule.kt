@@ -5,14 +5,20 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.TimePicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
 class ActivityDailySchedule : AppCompatActivity() {
 
+    private lateinit var mToast: Toast
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daily_schedule)
+
+        // Initialise here to speed up the pop-up refresh
+        mToast = Toast.makeText(applicationContext, "", Toast.LENGTH_SHORT)
 
         val pickerFrom = findViewById<View>(R.id.time_picker_from) as TimePicker
         pickerFrom.setIs24HourView(true)
@@ -36,8 +42,8 @@ class ActivityDailySchedule : AppCompatActivity() {
 
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 // Popup the current value as a message
-                //mToast.setText(progress.toString())
-                //mToast.show()
+                mToast.setText(progress.toString())
+                mToast.show()
             }
         })
     }

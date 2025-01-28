@@ -18,11 +18,11 @@
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp">
 
-        <TableRow android:background="#51B435" android:padding="10dp">
+        <TableRow android:background="#00BCD4" android:padding="10dp">
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -177,19 +177,19 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="Add new temperature time slot"
         android:textSize = "15sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp">
 
         <TableRow
-            android:background="#F0F7F7">
+            android:background="#BFE9FF">
 
             <TextView
                 android:layout_width="match_parent"
@@ -204,7 +204,7 @@
                 android:text="End time:" />
         </TableRow>
         <TableRow
-            android:background="#F0F7F7">
+            android:background="#BFE9FF">
 
             <TimePicker
                 android:id="@id/time_picker_from"
@@ -222,16 +222,6 @@
         </TableRow>
     </TableLayout>
 
-    <TextView
-        android:id="@+id/just_a_title"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="Look at me"
-        android:textSize = "15sp"
-        android:textStyle="bold"/>
-
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -239,13 +229,13 @@
         android:paddingRight="5dp">
 
         <TableRow
-            android:background="#F0F7F7">
+            android:background="#BFE9FF">
 
             <SeekBar
                 android:id="@+id/seekTimeSlotTemperature"
                 android:layout_marginTop="10dp"
                 android:layout_width="239dp"
-                android:layout_height="64dp"
+                android:layout_height="80dp"
                 android:layout_weight="1"
                 android:max="25"
                 android:min="15"
@@ -257,8 +247,9 @@
             <Button
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="@string/button_delete" />
+                android:text="@string/button_add" />
 
         </TableRow>
     </TableLayout>

@@ -26,6 +26,7 @@
     <string name="Sunday_short">Sun</string>
     <string name="Sunday_full">Sunday</string>
 
+    <string name="button_add">Add</string>
     <string name="button_delete">Del</string>
 
     <color name="light_grey">#c3c4c3</color>
